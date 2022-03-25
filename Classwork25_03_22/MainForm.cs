@@ -24,36 +24,20 @@ namespace Classwork25_03_22
                 fitnessClub = serial.Deserialize(fs) as FitnessClub;
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < fitnessClub.Visitors.visitorsArray.Length; i++)
             {
-                //VisitorsDGV.Rows.Add(fitnessClub.Visitors[i].vAge, fitnessClub.Visitors[i].vSurname
-                //    , fitnessClub.Visitors[i].vAge, fitnessClub.Visitors[i].vTariff);
+                VisitorsDGV.Rows.Add(fitnessClub.Visitors.visitorsArray[i].vName, fitnessClub.Visitors.visitorsArray[i].vSurname
+                    , fitnessClub.Visitors.visitorsArray[i].vAge, fitnessClub.Visitors.visitorsArray[i].vTariff.tName); //Обращаемся к объекту-тарифу
             }
-            //VisitorsDGV.DataSource = fitnessClub.Visitors;
-            //SimulatorsDGV.DataSource = fitnessClub.Simulators;
-            //TariffDGV.DataSource = fitnessClub.Tariffs;
-
-
-
-
-            //string path = "..\\..\\Files\\XMLFile.xml";
-            //XmlDocument document = new XmlDocument();
-            //try
-            //{
-            //    document.Load(path);
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Файл {path} не доступен", "Ошибка");
-            //}
-            //XmlSerializer xmls = new XmlSerializer(typeof(FitnessClub));
-
-            //FileStream filestream = new FileStream(path, FileMode.Open);
-            ////Экземпляру frmSizeSetup передаем данные, полученные в процессе десериализации
-            //var frmSizeSetup = (FitnessClub)xmls.Deserialize(filestream);
-
-            ////MemoryStream memstr = new MemoryStream();
-            ////var xmlList = (FitnessClub)xmls.Deserialize(memstr);
+                                                                                                                      
+            for (int i = 0; i < fitnessClub.Simulators.simulatorsArray.Length; i++)
+            {
+                SimulatorsDGV.Rows.Add(fitnessClub.Simulators.simulatorsArray[i].sName, fitnessClub.Simulators.simulatorsArray[i].sPrice, fitnessClub.Simulators.simulatorsArray[i].sBodyPart);
+            }
+            for (int i = 0; i < fitnessClub.Tariffs.tariffsArray.Length; i++)
+            {
+                TariffDGV.Rows.Add(fitnessClub.Tariffs.tariffsArray[i].tName, fitnessClub.Tariffs.tariffsArray[i].tPrice);
+            }
         }
     }
 }

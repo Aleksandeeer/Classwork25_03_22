@@ -5,35 +5,45 @@
 			<name>Александр</name>
 			<surname>Кузнецов</surname>
 			<age>18</age>
-			<tariff>Ежемесячный</tariff>
+			<tariff>
+				<name>Ежемесячный</name>
+			</tariff>
 		</visitor>
 		
 		<visitor id="2">
 			<name>Бенедикт</name>
 			<surname>Камбербетч</surname>
 			<age>45</age>
-			<tariff>Годовой</tariff>
+			<tariff>
+				<name>Еженедельный</name>
+			</tariff>
 		</visitor>
 
 		<visitor id="3">
 			<name>Том</name>
 			<surname>Харди</surname>
 			<age>40</age>
-			<tariff>Еженедельный</tariff>
+			<tariff>
+				<name>Ежегодный</name>
+			</tariff>
 		</visitor>
 
 		<visitor id="4">
 			<name>Илья</name>
 			<surname>Найтшуллер</surname>
 			<age>40</age>
-			<tariff>Ежедневный</tariff>
+			<tariff>
+				<name>Ежедневный</name>
+			</tariff>
 		</visitor>
 
 		<visitor id="5">
 			<name>Эмили</name>
 			<surname>Блант</surname>
 			<age>35</age>
-			<tariff>Годовой</tariff>
+			<tariff>
+				<name>Ежегодный</name>
+			</tariff>
 		</visitor>
 	</Visitors>
 

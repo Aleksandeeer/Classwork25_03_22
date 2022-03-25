@@ -7,19 +7,29 @@ namespace Classwork25_03_22
     public class FitnessClub
     {
         [XmlElement("Visitors")]
-        public Visitors visitors { get; set; }
+        public Visitors Visitors { get; set; }
 
         [XmlElement("Simulators")]
-        public List<Simulator> Simulators { get; set; }
+        public Simulators Simulators { get; set; }
 
         [XmlElement("Tariffs")]
-        public List<Tariff> Tariffs { get; set; }
+        public Tariffs Tariffs { get; set; }
     }   
 
     public class Visitors
     {
         [XmlElement("visitor")]
         public Visitor[] visitorsArray { get; set; }
+    }
+    public class Simulators
+    {
+        [XmlElement("simulator")]
+        public Simulator[] simulatorsArray { get; set; }
+    }
+    public class Tariffs
+    {
+        [XmlElement("tariff")]
+        public Tariff[] tariffsArray { get; set; }
     }
     public class Visitor
     {
@@ -36,7 +46,7 @@ namespace Classwork25_03_22
         public byte vAge { get; set; }
 
         [XmlElement("tariff", Namespace = "")]
-        public byte vTariff { get; set; }
+        public Tariff vTariff { get; set; }
 
     }
 
@@ -50,7 +60,7 @@ namespace Classwork25_03_22
         public string tName { get; set; }
 
         [XmlElement("price", Namespace = "")]
-        public string tSurname { get; set; }
+        public string tPrice { get; set; }
     }
 
     [XmlRoot("Simulators")]
@@ -63,7 +73,7 @@ namespace Classwork25_03_22
         public string sName { get; set; }
 
         [XmlElement("price", Namespace = "")]
-        public string sSurname { get; set; }
+        public string sPrice { get; set; }
 
         [XmlElement("bodyPart", Namespace = "")]
         public string sBodyPart { get; set; }
