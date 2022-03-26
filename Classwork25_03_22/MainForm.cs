@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using System.Xml;
+using Newtonsoft.Json;
 
 namespace Classwork25_03_22
 {
@@ -15,28 +15,53 @@ namespace Classwork25_03_22
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            FitnessClub fitnessClub = new FitnessClub();
+            //XML
+            try
+            {
+                FitnessClub fitnessClubXML = new FitnessClub();
 
-            XmlSerializer serial = new XmlSerializer(typeof(FitnessClub));
-            string path = "..\\..\\Files\\XMLFile.xml";
-            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                XmlSerializer serial = new XmlSerializer(typeof(FitnessClub));
+                string pathXML = "..\\..\\Files\\XMLFile.xml";
+                using (FileStream fs = new FileStream(pathXML, FileMode.Open, FileAccess.Read))
+                {
+                    fitnessClubXML = serial.Deserialize(fs) as FitnessClub;
+                }
+
+                for (int i = 0; i < fitnessClubXML.Visitors.visitorsArray.Length; i++)
+                {
+                    VisitorsDGV.Rows.Add(fitnessClubXML.Visitors.visitorsArray[i].vName, fitnessClubXML.Visitors.visitorsArray[i].vSurname, 
+                        fitnessClubXML.Visitors.visitorsArray[i].vAge, fitnessClubXML.Visitors.visitorsArray[i].vTariff.tName); //Обращаемся к тарифу пользователя
+                }
+
+                for (int i = 0; i < fitnessClubXML.Simulators.simulatorsArray.Length; i++)
+                {
+                    SimulatorsDGV.Rows.Add(fitnessClubXML.Simulators.simulatorsArray[i].sName, 
+                        fitnessClubXML.Simulators.simulatorsArray[i].sPrice, fitnessClubXML.Simulators.simulatorsArray[i].sBodyPart);
+                }
+                for (int i = 0; i < fitnessClubXML.Tariffs.tariffsArray.Length; i++)
+                {
+                    TariffDGV.Rows.Add(fitnessClubXML.Tariffs.tariffsArray[i].tName, fitnessClubXML.Tariffs.tariffsArray[i].tPrice);
+                }
+            }
+            catch(Exception ex)
             {
-                fitnessClub = serial.Deserialize(fs) as FitnessClub;
+                MessageBox.Show($"XML-Ошибка: {ex}", "Ошибка");
             }
 
-            for (int i = 0; i < fitnessClub.Visitors.visitorsArray.Length; i++)
+            //JSON
+            try
             {
-                VisitorsDGV.Rows.Add(fitnessClub.Visitors.visitorsArray[i].vName, fitnessClub.Visitors.visitorsArray[i].vSurname
-                    , fitnessClub.Visitors.visitorsArray[i].vAge, fitnessClub.Visitors.visitorsArray[i].vTariff.tName); //Обращаемся к объекту-тарифу
+                string pathJSON = "..\\..\\Files\\JSONFile.json";
+                string jsonString = File.ReadAllText(pathJSON);
+
+                FitnessClub fitnessClubJSON = new FitnessClub();
+
+                fitnessClubJSON = JsonConvert.DeserializeObject<FitnessClub>(jsonString);
+                //FitnessClub fitnessClubJSON = JsonSerializer.Deserialize<FitnessClub>(jsonString);
             }
-                                                                                                                      
-            for (int i = 0; i < fitnessClub.Simulators.simulatorsArray.Length; i++)
+            catch (Exception ex)
             {
-                SimulatorsDGV.Rows.Add(fitnessClub.Simulators.simulatorsArray[i].sName, fitnessClub.Simulators.simulatorsArray[i].sPrice, fitnessClub.Simulators.simulatorsArray[i].sBodyPart);
-            }
-            for (int i = 0; i < fitnessClub.Tariffs.tariffsArray.Length; i++)
-            {
-                TariffDGV.Rows.Add(fitnessClub.Tariffs.tariffsArray[i].tName, fitnessClub.Tariffs.tariffsArray[i].tPrice);
+                MessageBox.Show($"JSON-Ошибка: {ex}", "Ошибка");
             }
         }
     }
