@@ -48,21 +48,37 @@ namespace Classwork25_03_22
                 MessageBox.Show($"XML-Ошибка: {ex}", "Ошибка");
             }
 
-            //JSON
-            try
-            {
-                string pathJSON = "..\\..\\Files\\JSONFile.json";
-                string jsonString = File.ReadAllText(pathJSON);
+            ////JSON
+            //try
+            //{
+            //    string pathJSON = "..\\..\\Files\\JSONFile.json";
+            //    string jsonString = File.ReadAllText(pathJSON);
 
-                FitnessClub fitnessClubJSON = new FitnessClub();
+            //    FitnessClub fitnessClubJSON = new FitnessClub();
 
-                fitnessClubJSON = JsonConvert.DeserializeObject<FitnessClub>(jsonString);
-                //FitnessClub fitnessClubJSON = JsonSerializer.Deserialize<FitnessClub>(jsonString);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"JSON-Ошибка: {ex}", "Ошибка");
-            }
+            //    fitnessClubJSON = JsonConvert.DeserializeObject<FitnessClub>(jsonString);
+
+            //    for (int i = 0; i < fitnessClubJSON.Visitors.visitorsArray.Length; i++)
+            //    {
+            //        VisitorsDGV.Rows.Add(fitnessClubJSON.Visitors.visitorsArray[i].vName, fitnessClubJSON.Visitors.visitorsArray[i].vSurname,
+            //            fitnessClubJSON.Visitors.visitorsArray[i].vAge, fitnessClubJSON.Visitors.visitorsArray[i].vTariff.tName); //Обращаемся к тарифу пользователя
+            //    }
+
+            //    for (int i = 0; i < fitnessClubJSON.Simulators.simulatorsArray.Length; i++)
+            //    {
+            //        SimulatorsDGV.Rows.Add(fitnessClubJSON.Simulators.simulatorsArray[i].sName,
+            //            fitnessClubJSON.Simulators.simulatorsArray[i].sPrice, fitnessClubJSON.Simulators.simulatorsArray[i].sBodyPart);
+            //    }
+            //    for (int i = 0; i < fitnessClubJSON.Tariffs.tariffsArray.Length; i++)
+            //    {
+            //        TariffDGV.Rows.Add(fitnessClubJSON.Tariffs.tariffsArray[i].tName, fitnessClubJSON.Tariffs.tariffsArray[i].tPrice);
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"JSON-Ошибка: {ex}", "Ошибка");
+            //}
         }
     }
 }
